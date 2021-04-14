@@ -4,11 +4,15 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    public class ProjectileTrajectoire : MonoBehaviour
+    public class GoingForwardFromPlayer : MonoBehaviour
     {
+        // ------- Constants -------
+        private const int DestructionOffset = 40;
+        
+        // ------- References -------
         private PlayerController _playerController;
-
-        private int offset = 40;
+        
+        // ------- Private Attributes -------
         private float _speed;
         private int _orientation;
 
@@ -26,8 +30,7 @@ namespace Behaviours
         void Update()
         {
             transform.Translate(Vector3.right.normalized * (_orientation * (Time.deltaTime * _speed)));
-            
-            if (Math.Abs(_playerController.transform.position.x - transform.position.x ) > offset)
+            if (Math.Abs(_playerController.transform.position.x - transform.position.x ) > DestructionOffset)
                 Destroy(gameObject);
         }
     }

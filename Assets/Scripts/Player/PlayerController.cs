@@ -16,7 +16,7 @@ namespace Player
         private const float DefaultPositionY = 0.0f;
         private const float DefaultPositionZ = 0.0f;
         
-        private const float DefaultSpeed = 15.0f;
+        private const float DefaultSpeed = 14.0f;
         
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
