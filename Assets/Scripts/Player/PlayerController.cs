@@ -5,40 +5,49 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        // ------Constants ------
+        // ------ Constants ------
         private const float DefaultMass = 50.0f;
         private const float GravityModifier = 10.0f; //fall speed
         private const float GravityScale = 1.0f; //gravity influence
 
-        private const float MaxSpeed = 50.0f;
         private const float MaxFallSpeed = 35.0f;
+
+        private const float DefaultPositionX = 0.0f;
+        private const float DefaultPositionY = 0.0f;
+        private const float DefaultPositionZ = 0.0f;
+        
+        private const float DefaultSpeed = 15.0f;
         
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
-        private const float DefaultSpeed = 15.0f;
+        
         private const float DefaultJumpForce = 12000.0f;
+        
         private const float DefaultDashSpeed = 5.0f;
         
-        // ------ References ------
+        // ------ Player References ------
         private Rigidbody2D _playerRigidbody2D;
         private SpriteRenderer _playerSpriteRenderer;
         private GroundCheck _groundCheck;
         private AttackSpawnManager _attackSpawnManager;
         
         // ------ Private Attributes ------
-        private readonly Vector3 _defaultPosition = new Vector3(0, 3, 0);
+        private readonly Vector3 _defaultPosition = new Vector3(DefaultPositionX, DefaultPositionY, DefaultPositionZ);
         
         private float _speed = DefaultSpeed;
+        
         private float _jumpForce = DefaultJumpForce;
+        
         private float _projectileSpeed = DefaultProjectileSpeed;
         private float _projectileDelay = DefaultProjectileDelay;
+        
         private float _dashSpeed = DefaultDashSpeed;
 
         private float _horizontalInput;
         
+        private bool _canJump = true; //In order to prevent jumping with continous pressing
         private bool _canAttack = true;
         private bool _canDash;
-        private bool _canJump = true; //In order to prevent jumping with continous pressing
         private bool _canDoubleJump;
         
         private bool _isOnGround; //Tells if the player is on the ground or not
@@ -71,6 +80,7 @@ namespace Player
             Physics2D.gravity *= GravityModifier;
             _playerRigidbody2D.gravityScale = GravityScale;
             _playerRigidbody2D.mass = DefaultMass;
+            
             SetProjectileSpeed(DefaultProjectileSpeed);
         }
         
@@ -141,6 +151,8 @@ namespace Player
                 SetPlayerVelocity(0, 0);
             }
         }
+        
+        // ------- GETTERS -------
 
         public float GetProjectileSpeed()
         {
@@ -150,6 +162,18 @@ namespace Player
         public int GetOrientation()
         {
             return (int) _orientation;
+        }
+        
+        // ------- SETTERS -------
+        
+        private void SetPlayerVelocity(float x, float y)
+        {
+            _playerRigidbody2D.velocity = new Vector2(x, y);
+        }
+
+        private void SetProjectileSpeed(float speed)
+        {
+            _projectileSpeed = speed;
         }
         
         // ------- Basics Movements Methods -------
@@ -180,17 +204,6 @@ namespace Player
             Vector3 movdir = new Vector2(velocity.x,velocity.y).normalized;
             transform.position += movdir * _dashSpeed;
         }
-
-        private void SetPlayerVelocity(float x, float y)
-        {
-            _playerRigidbody2D.velocity = new Vector2(x, y);
-        }
-
-        private void SetProjectileSpeed(float speed)
-        {
-            _projectileSpeed = speed;
-        }
-
 
         // ------- Collisions and Triggers Methods -------
         private void OnCollisionEnter2D(Collision2D other)
