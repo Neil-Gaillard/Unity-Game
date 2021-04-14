@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UnityEngine;
 
@@ -11,9 +10,7 @@ namespace Camera
         private const float YPosBase = 4.0f;
         private const float ZPosBase = -10.0f;
         
-        private const float SmoothTime = 0.05F;
-        
-        private const float Tolerance = 0.01f;
+        private const float SmoothTime = 0.13F;
         
         // ------ References ------
         private Transform _cameraTransform;
@@ -27,14 +24,6 @@ namespace Camera
         private Vector3 _velocity = Vector3.zero;
         
         private float _yPosition = YPosBase;
-
-        private FollowMode _followMode = FollowMode.Basic;
-
-        private enum FollowMode
-        {
-            Basic,
-            CenterPlayer
-        }
         
         // ------ Event Methods ------
 
@@ -51,35 +40,18 @@ namespace Camera
             _yPosition = _playerTransform.position.y + _offset.y;
         }
 
-        private void Update()
-        {
-            _followMode = UpdateFollowMode();
-        }
 
         // LateUpdate is called once per frame
         private void LateUpdate()
         {
-            _targetPosition = _playerTransform.position + _offset;
-
-            switch (_followMode)
-            {
-                case FollowMode.Basic:
-                    _targetPosition.y = _yPosition;
-                    break;
-            }
-            _cameraTransform.position = Vector3.SmoothDamp(_cameraTransform.position, _targetPosition, ref _velocity, SmoothTime);
-
-        }
-
-        private FollowMode UpdateFollowMode()
-        {
-            if (Math.Abs(_playerTransform.position.y - _cameraTransform.position.y) < Tolerance && !_groundCheck.isOnGround())
-                return FollowMode.CenterPlayer;
             if (_groundCheck.isOnGround())
-            {
                 _yPosition = _playerTransform.position.y + _offset.y;
-            }
-            return FollowMode.Basic;
+            
+            _targetPosition = _playerTransform.position + _offset;
+            
+            _targetPosition.y = _yPosition;
+            
+            _cameraTransform.position = Vector3.SmoothDamp(_cameraTransform.position, _targetPosition, ref _velocity, SmoothTime);
         }
     }
 }
