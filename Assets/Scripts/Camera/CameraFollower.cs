@@ -42,7 +42,7 @@ namespace Camera
 
 
         // LateUpdate is called once per frame
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             if (_groundCheck.isOnGround())
                 _yPosition = _playerTransform.position.y + _offset.y;
