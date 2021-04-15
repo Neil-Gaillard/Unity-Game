@@ -7,8 +7,8 @@ namespace Player
     {
         // ------ Constants ------
         private const float DefaultMass = 50.0f;
-        private const float GravityModifier = 10.0f; //fall speed
-        private const float GravityScale = 1.0f; //gravity influence
+        private const float GravityModifier = 3f; //fall speed
+        private const float GravityScale = 2.5f; //gravity influence
 
         private const float MaxFallSpeed = 35.0f;
 
@@ -16,12 +16,12 @@ namespace Player
         private const float DefaultPositionY = 0.0f;
         private const float DefaultPositionZ = 0.0f;
         
-        private const float DefaultSpeed = 14.0f;
+        private const float DefaultSpeed = 15.0f;
         
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
         
-        private const float DefaultJumpForce = 12000.0f;
+        private const float DefaultJumpForce = 1500.0f;
         
         private const float DefaultDashSpeed = 5.0f;
         
