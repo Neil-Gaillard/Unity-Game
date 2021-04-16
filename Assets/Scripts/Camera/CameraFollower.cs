@@ -7,12 +7,12 @@ namespace Camera
     {
         // ------Constants ------
         private const float XPosBase = 0.0f;
-        private const float YPosBase = 7.0f;
+        private const float YPosBase = 7f;
         private const float ZPosBase = -10.0f;
         
         private const float SmoothTimeX = 0.35F;
-        private const float SmoothTimeYSlow = 1.2F;
-        private const float SmoothTimeFast = 0.1F;
+        private const float SmoothTimeYSlow = 1F;
+        private const float SmoothTimeFast = 0.2F;
 
         // ------GameObject References ------
         private Transform _cameraTransform;
