@@ -10,7 +10,7 @@ namespace Player
         private const float GravityModifier = 3f; //fall speed
         private const float GravityScale = 2.5f; //gravity influence
 
-        private const float MaxFallSpeed = 35.0f;
+        private const float MaxFallSpeed = 40.0f;
 
         private const float DefaultPositionX = 0.0f;
         private const float DefaultPositionY = 0.0f;
@@ -20,8 +20,9 @@ namespace Player
         
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
-        
-        private const float DefaultJumpForce = 1500.0f;
+
+        private const float DefaultJumpForce = 500;
+        private const float MaxJumpForce = 1500.0f;
         
         private const float DefaultDashSpeed = 5.0f;
         
@@ -36,7 +37,7 @@ namespace Player
         
         private float _speed = DefaultSpeed;
         
-        private float _jumpForce = DefaultJumpForce;
+        private float _jumpForce = MaxJumpForce;
         
         private float _projectileSpeed = DefaultProjectileSpeed;
         private float _projectileDelay = DefaultProjectileDelay;
@@ -46,7 +47,7 @@ namespace Player
         private float _horizontalInput;
         
         private bool _canJump = true; //In order to prevent jumping with continous pressing
-        private bool _canAttack = true;
+        private bool _canAttack;
         private bool _canDash;
         private bool _canDoubleJump;
         
