@@ -6,7 +6,7 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         // ------ Constants ------
-        private const float DefaultMass = 200.0f;
+        private const float DefaultMass = 50.0f;
         private const float GravityModifier = 4f; //fall speed
         private const float GravityScale = 2.5f; //gravity influence
 
@@ -99,7 +99,7 @@ namespace Player
             
             if(_isJumping)
                 if(!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
-                    _playerRigidbody2D.AddForce(new Vector2(0, -CalculateJumpForce()) * DefaultMass);
+                    _playerRigidbody2D.AddForce(new Vector2(0, -CalculateJumpForce() * 2) * DefaultMass);
 
             if (Input.GetKey(KeyCode.A) && _canDash)
                 Dash();
