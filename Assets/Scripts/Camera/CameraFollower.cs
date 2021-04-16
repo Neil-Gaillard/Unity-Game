@@ -10,8 +10,8 @@ namespace Camera
         private const float YPosBase = 7f;
         private const float ZPosBase = -10.0f;
         
-        private const float SmoothTimeX = 0.35F;
-        private const float SmoothTimeYSlow = 1F;
+        private const float SmoothTimeX = 0.3F;
+        private const float SmoothTimeYSlow = 1.5F;
         private const float SmoothTimeFast = 0.2F;
 
         // ------GameObject References ------

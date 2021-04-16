@@ -37826,33 +37826,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 5917712759035934035, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
-      propertyPath: m_Depth
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5917712759035934035, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
-      propertyPath: orthographic size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5917712759035934035, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.86274517
-      objectReference: {fileID: 0}
-    - target: {fileID: 5917712759035934035, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.7176471
-      objectReference: {fileID: 0}
-    - target: {fileID: 5917712759035934035, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.12941177
-      objectReference: {fileID: 0}
     - target: {fileID: 5917712759035934124, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5917712759035934124, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5917712759035934124, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37860,7 +37836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5917712759035934124, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5917712759035934124, guid: 5e48d2152fed094419b88c677ccca0e3, type: 3}
       propertyPath: m_LocalPosition.z
