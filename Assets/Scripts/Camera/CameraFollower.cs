@@ -14,6 +14,8 @@ namespace Camera
         private const float SmoothTimeYSlow = 1.5F;
         private const float SmoothTimeFast = 0.2F;
 
+        private const int YFollowTolerence = 11;
+
         // ------GameObject References ------
         private Transform _cameraTransform;
         
@@ -48,7 +50,7 @@ namespace Camera
             float newPositionX = Mathf.SmoothDamp(_cameraTransform.position.x, _targetPosition.x, ref _velocity.x, SmoothTimeX);
             float newPositionY;
             
-            if (Math.Abs(_playerTransform.position.y - _cameraTransform.position.y) > 11)
+            if (Math.Abs(_playerTransform.position.y - _cameraTransform.position.y) > YFollowTolerence)
                 newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _playerTransform.position.y, ref _velocity.y, SmoothTimeFast);
             else
                 newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _targetPosition.y, ref _velocity.y,
