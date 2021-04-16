@@ -51,7 +51,7 @@ namespace Camera
             float newPositionY;
             
             if (Math.Abs(_playerTransform.position.y - _cameraTransform.position.y) > YFollowTolerence)
-                newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _playerTransform.position.y, ref _velocity.y, SmoothTimeFast);
+                newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _playerTransform.position.y - 2, ref _velocity.y, SmoothTimeFast);
             else
                 newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _targetPosition.y, ref _velocity.y,
                     SmoothTimeYSlow);

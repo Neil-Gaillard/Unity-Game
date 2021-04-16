@@ -6,8 +6,8 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         // ------ Constants ------
-        private const float DefaultMass = 50.0f;
-        private const float GravityModifier = 3f; //fall speed
+        private const float DefaultMass = 200.0f;
+        private const float GravityModifier = 4f; //fall speed
         private const float GravityScale = 2.5f; //gravity influence
 
         private const float MaxFallSpeed = 40.0f;
@@ -21,8 +21,7 @@ namespace Player
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
 
-        private const float DefaultJumpForce = 500;
-        private const float MaxJumpForce = 1500.0f;
+        private const float DefaultJumpForce = 400;
         
         private const float DefaultDashSpeed = 5.0f;
         
@@ -37,20 +36,21 @@ namespace Player
         
         private float _speed = DefaultSpeed;
         
-        private float _jumpForce = MaxJumpForce;
-        
         private float _projectileSpeed = DefaultProjectileSpeed;
         private float _projectileDelay = DefaultProjectileDelay;
         
         private float _dashSpeed = DefaultDashSpeed;
 
         private float _horizontalInput;
+
+        private bool _jumpKeyHeld;
         
         private bool _canJump = true; //In order to prevent jumping with continous pressing
         private bool _canAttack;
         private bool _canDash;
-        private bool _canDoubleJump;
-        
+        private bool _canDoubleJump = true;
+
+        private bool _isJumping;
         private bool _isOnGround; //Tells if the player is on the ground or not
 
         [Range(0, 2)] private int _jumpCount;
@@ -96,23 +96,13 @@ namespace Player
                 false when _jumpCount == 0 => 1,
                 _ => _jumpCount
             };
-
-            switch (_jumpCount)
-            {
-                case 0:
-                    if (_isOnGround && _canJump && Input.GetKey(KeyCode.Space))
-                        Jump();
-                    break;
-                case 1:
-                    if (_canDoubleJump && _canJump && Input.GetKey(KeyCode.Space))
-                        Jump();
-                    break;
-            }
+            
+            if(_isJumping)
+                if(!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
+                    _playerRigidbody2D.AddForce(new Vector2(0, -CalculateJumpForce()) * DefaultMass);
 
             if (Input.GetKey(KeyCode.A) && _canDash)
-            {
                 Dash();
-            }
 
             _horizontalInput = Input.GetAxis("Horizontal");
 
@@ -120,8 +110,7 @@ namespace Player
                 _orientation = Orientation.Left;
                 _playerSpriteRenderer.flipX = true;
             }
-            else if (_horizontalInput > 0)
-            {
+            else if (_horizontalInput > 0) {
                 _orientation = Orientation.Right;
                 _playerSpriteRenderer.flipX = false;
             }
@@ -136,17 +125,27 @@ namespace Player
         private void Update()
         {
             if (!_canJump && Input.GetKeyUp(KeyCode.Space))
-            {
                 _canJump = true;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _jumpKeyHeld = true;
+                if (_isOnGround)
+                    Jump();
             }
+            if (_canDoubleJump && !_isOnGround && _canJump && _jumpCount < 2 &&Input.GetKeyDown(KeyCode.Space))
+                Jump();
             
+            else if (Input.GetKeyUp(KeyCode.Space))
+                _jumpKeyHeld = false;
+
             if (Input.GetKey(KeyCode.Z) && _canAttack)
             {
                 _attackSpawnManager.SpawnProjectile();
                 StartCoroutine(AttackDelay());
             }
 
-            if (transform.position.y < -20)
+            if (transform.position.y < -40)
             {
                 transform.localPosition = _defaultPosition;
                 SetPlayerVelocity(0, 0);
@@ -193,7 +192,8 @@ namespace Player
         private void Jump()
         {
             SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
-            _playerRigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _isJumping = true;
+            _playerRigidbody2D.AddForce(Vector2.up * (CalculateJumpForce() * _playerRigidbody2D.mass), ForceMode2D.Impulse);
             _isOnGround = false;
             _canJump = false;
             ++_jumpCount;
@@ -204,6 +204,11 @@ namespace Player
             var velocity = _playerRigidbody2D.velocity;
             Vector3 movdir = new Vector2(velocity.x,velocity.y).normalized;
             transform.position += movdir * _dashSpeed;
+        }
+        
+        private float CalculateJumpForce()
+        {
+            return Mathf.Sqrt(2 * Physics2D.gravity.magnitude * DefaultJumpForce);
         }
 
         // ------- Collisions and Triggers Methods -------
