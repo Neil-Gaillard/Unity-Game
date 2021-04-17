@@ -7,14 +7,14 @@ namespace Camera
     {
         // ------Constants ------
         private const float XPosBase = 0.0f;
-        private const float YPosBase = 7f;
+        private const float YPosBase = 6f;
         private const float ZPosBase = -10.0f;
 
         private const float SmoothTimeX = 0.3F;
-        private const float SmoothTimeYSlow = 1.3F;
+        private const float SmoothTimeYSlow = 1.5F;
         private const float SmoothTimeYMiddle = 1.0F;
-        private const float SmoothTimeYFast = 0.2F;
-        private const float SmoothTimeYFaster = 0.05f;
+        private const float SmoothTimeYFast = 0.6F;
+        private const float SmoothTimeYFaster = 0.2f;
 
         private const int YFollowTolerenceMiddle = 9;
         private const int YFollowTolerenceFast = 11;    
@@ -56,7 +56,7 @@ namespace Camera
             float newPositionY;
 
             if (Math.Abs(_playerTransform.position.y - _cameraTransform.position.y) > YFollowTolerenceFaster)
-                newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _playerTransform.position.y - 2,
+                newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _playerTransform.position.y - 5,
                     ref _velocity.y, SmoothTimeYFaster);
             else if (Math.Abs(_playerTransform.position.y - _cameraTransform.position.y) > YFollowTolerenceFast)
                 newPositionY = Mathf.SmoothDamp(_cameraTransform.position.y, _playerTransform.position.y,
