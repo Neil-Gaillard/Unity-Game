@@ -8,13 +8,13 @@ namespace Behaviours
     {
         // ------- Constants -------
         private const int DestructionOffset = 40;
-        
+        private int _orientation;
+
         // ------- References -------
         private PlayerController _playerController;
-        
+
         // ------- Private Attributes -------
         private float _speed;
-        private int _orientation;
 
         private void Awake()
         {
@@ -27,10 +27,10 @@ namespace Behaviours
             _orientation = _playerController.GetOrientation();
         }
 
-        void Update()
+        private void Update()
         {
             transform.Translate(Vector3.right.normalized * (_orientation * (Time.deltaTime * _speed)));
-            if (Math.Abs(_playerController.transform.position.x - transform.position.x ) > DestructionOffset)
+            if (Math.Abs(_playerController.transform.position.x - transform.position.x) > DestructionOffset)
                 Destroy(gameObject);
         }
     }
