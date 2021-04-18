@@ -7,10 +7,10 @@ namespace Player
     {
         // ------ Constants ------
         private const float DefaultMass = 50.0f;
-        private const float GravityModifier = 4f; //fall speed
+        private const float GravityModifier = 2.7f; //fall speed
         private const float GravityScale = 2.5f; //gravity influence
 
-        private const float MaxFallSpeed = 40.0f;
+        private const float MaxFallSpeed = 45.0f;
 
         private const float DefaultPositionX = 0.0f;
         private const float DefaultPositionY = 0.0f;
@@ -21,7 +21,7 @@ namespace Player
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
 
-        private const float DefaultJumpForce = 1000;
+        private const float DefaultJumpForce = 20;
 
         private const float DefaultDashSpeed = 5.0f;
 
@@ -125,7 +125,7 @@ namespace Player
 
             if (_isJumping)
                 if (!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
-                    _playerRigidbody2D.AddForce(new Vector2(0, -CalculateJumpForce()) * DefaultMass);
+                    _playerRigidbody2D.AddForce(new Vector2(0, -150) * DefaultMass);
 
             if (Input.GetKey(KeyCode.A) && _canDash)
                 Dash();
@@ -145,8 +145,8 @@ namespace Player
 
             Move();
 
-            if (_playerRigidbody2D.velocity.y > MaxFallSpeed)
-                SetPlayerVelocity(_playerRigidbody2D.velocity.x, MaxFallSpeed);
+            //if (_playerRigidbody2D.velocity.y > MaxFallSpeed)
+                //SetPlayerVelocity(_playerRigidbody2D.velocity.x, MaxFallSpeed);
         }
 
         // ------- Collisions and Triggers Methods -------
