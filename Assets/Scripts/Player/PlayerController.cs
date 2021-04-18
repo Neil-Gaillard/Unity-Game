@@ -10,7 +10,6 @@ namespace Player
         private const float GravityModifier = 2.7f; //fall speed
         private const float GravityScale = 2.5f; //gravity influence
 
-        private const float MaxFallSpeed = 45.0f;
 
         private const float DefaultPositionX = 0.0f;
         private const float DefaultPositionY = 0.0f;
@@ -27,7 +26,9 @@ namespace Player
 
         // ------ Private Attributes ------
         private readonly Vector3 _defaultPosition = new Vector3(DefaultPositionX, DefaultPositionY, DefaultPositionZ);
+        
         private AttackSpawnManager _attackSpawnManager;
+        
         private bool _canAttack;
         private bool _canDash;
         private bool _canDoubleJump = true;
@@ -144,9 +145,6 @@ namespace Player
             }
 
             Move();
-
-            //if (_playerRigidbody2D.velocity.y > MaxFallSpeed)
-                //SetPlayerVelocity(_playerRigidbody2D.velocity.x, MaxFallSpeed);
         }
 
         // ------- Collisions and Triggers Methods -------
