@@ -6,9 +6,9 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         // ------ Constants ------
-        private const float DefaultMass = 50.0f;
-        private const float GravityModifier = 2.7f; //fall speed
-        private const float GravityScale = 2.5f ; //gravity influence
+        private const float DefaultMass = 60.0f;
+        private const float GravityModifier = 3f; //fall speed
+        private const float GravityScale = 2.5f; //gravity influence
 
 
         private const float DefaultPositionX = 0.0f;
@@ -150,8 +150,8 @@ namespace Player
         // ------- Collisions and Triggers Methods -------
         private void OnCollisionEnter2D(Collision2D other)
         {
-            //if (other.gameObject.CompareTag("Ground"))
-                //SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
+            if (other.gameObject.CompareTag("Ground"))
+                SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
