@@ -8,7 +8,7 @@ namespace Player
         // ------ Constants ------
         private const float DefaultMass = 50.0f;
         private const float GravityModifier = 2.7f; //fall speed
-        private const float GravityScale = 2.5f; //gravity influence
+        private const float GravityScale = 2.5f ; //gravity influence
 
 
         private const float DefaultPositionX = 0.0f;
