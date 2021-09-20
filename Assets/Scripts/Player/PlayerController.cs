@@ -150,8 +150,8 @@ namespace Player
         // ------- Collisions and Triggers Methods -------
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground"))
-                SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
+            //if (other.gameObject.CompareTag("Ground"))
+                //SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -202,18 +202,12 @@ namespace Player
         }
 
         // ------- Basics Movements Methods -------
-
-        /**
-         * Moves the player in the wanted direction by the user
-         */
+        
         private void Move()
         {
             SetPlayerVelocity(_speed * _horizontalInput, _playerRigidbody2D.velocity.y);
         }
-
-        /**
-         * Makes the player jump in the air
-         */
+        
         private void Jump()
         {
             SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
