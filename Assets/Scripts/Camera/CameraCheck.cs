@@ -1,3 +1,5 @@
+/* UNUSED BECAUSE OF CINEMACHINE
+ 
 using UnityEngine;
 
 namespace Camera
@@ -24,3 +26,4 @@ namespace Camera
         }
     }
 }
+*/

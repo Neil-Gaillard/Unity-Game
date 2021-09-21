@@ -1,3 +1,5 @@
+/* UNUSED BECAUSE OF CINEMACHINE
+
 using System;
 using Player;
 using UnityEngine;
@@ -69,9 +71,6 @@ namespace Camera
             _cameraTransform.position = new Vector3(newPositionX, newPositionY, ZOffset);
         }
 
-        /**
-         * 
-         */
         private void ChooseCameraPosition()
         {
             _low = _cameraCheck.IsColliding();
@@ -83,3 +82,4 @@ namespace Camera
         }
     }
 }
+*/
