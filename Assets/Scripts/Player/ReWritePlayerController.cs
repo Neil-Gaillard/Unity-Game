@@ -141,7 +141,7 @@ namespace Player
             {
                 _jumpKeyHeld = true;
                 if (_isOnGround)
-                    Jump();
+                    Jump(); 
             }
 
             //Checks for jump button release
