@@ -85,6 +85,61 @@ namespace Player
             _playerRigidbody2D.gravityScale = GravityScale;
             _playerRigidbody2D.mass = DefaultMass;
         }
+        
+        private void FixedUpdate()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Update()
+        {
+            throw new NotImplementedException();
+        }
+        
+        // ------ COLLISIONS DETECTION METHODS ------
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            throw new NotImplementedException();
+        }
+        
+        // ------ GETTERS ------
+
+        // ------ SETTERS ------
+
+        private void SetPlayerVelocity(float x, float y)
+        {
+            _playerRigidbody2D.velocity = new Vector2(x, y);
+        }
+        
+        // ------ PLAYER ACTIONS ------
+
+        private void Move()
+        {
+            
+        }
+
+        private void CalculateJumpForce()
+        {
+            
+        }
+
+        private void Jump()
+        {
+            
+        }
+
+        private void Dash()
+        {
+            
+        }
+        
+        // ------ COROUTINES ------
 
         //TODO: Encapsuler l'Orientation
         private enum Orientation
