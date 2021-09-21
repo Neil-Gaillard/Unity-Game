@@ -21,11 +21,15 @@ namespace Player
         private const float DefaultSpeed = 15.0f;
 
         private const float DefaultJumpForce = 20.0f;
+        private const float DefaultCounterJumpForce = 150.0f;
 
-        private const float DefaultDashSpeed = 5.0f;
+        private const float DefaultDashSpeed = 7.0f;
+        private const float DefaultDashDelay = 0.3f;
 
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
+
+        private const float DefaultRespawnLimit = -50.0f;
         
         // ------ PRIVATE ATTRIBUTES ------
 
@@ -42,11 +46,13 @@ namespace Player
         
         // --- Key Pressing Check ---
         private bool _jumpKeyHeld;
+        private bool _dashKeyHeld;
         
         private float _horizontalInput;
 
         // --- Initialisation of values from constants ---
         private float _dashSpeed;
+        private float _dashDelay;
         private float _projectileDelay;
         private float _projectileSpeed;
         private readonly float _speed = DefaultSpeed;
@@ -85,9 +91,17 @@ namespace Player
             _playerRigidbody2D.mass = DefaultMass;
             
             //Initializing Attributes
+            _jumpKeyHeld = false;
+            SetDoubleJumpAbility(true);
+            
+            SetAttackAbility(true);
             SetProjectileSpeed(DefaultProjectileSpeed);
             SetProjectileDelay(DefaultProjectileDelay);
+            
+            SetDashAbility(true);
             SetDashSpeed(DefaultDashSpeed);
+            SetDashDelay(DefaultDashDelay);
+            _dashKeyHeld = false;
         }
         
         private void FixedUpdate()
@@ -135,12 +149,12 @@ namespace Player
         private void ManageJumpInput()
         {
             if (!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
-                _playerRigidbody2D.AddForce(new Vector2(0, -200) * DefaultMass);
+                _playerRigidbody2D.AddForce(new Vector2(0, -DefaultCounterJumpForce) * DefaultMass);
             
             //If the player is releasing jump button, we put the value to true
             //This test will prevent continuous Jumping
             if (!_canJump && Input.GetKeyUp(KeyCode.Space))
-                _canJump = true;
+                 SetJumpAbility(true);
 
             //If the player presses the jump button, it is indicated to _jumpKeyHeld and he jumps if he is on the ground
             //This lauched the Initial Jump from the ground
@@ -162,16 +176,21 @@ namespace Player
 
         private void ManageDashInput()
         {
-            if (Input.GetKey(KeyCode.A) && _canDash)
+            if (!_dashKeyHeld && _canDash && Input.GetKeyDown(KeyCode.A))
+            {
+                _dashKeyHeld = true;
                 Dash();
+            }
+
+            if (Input.GetKeyUp(KeyCode.A))
+                _dashKeyHeld = false;
         }
 
         private void ManageAttackInput()
         {
             if (_canLaunchProjectiles && Input.GetKey(KeyCode.Z))
             {
-                _attackSpawnManager.SpawnProjectile();
-                StartCoroutine(AttackDelay());
+                LaunchProjectile();
             }
         }
 
@@ -219,9 +238,34 @@ namespace Player
             _playerRigidbody2D.velocity = new Vector2(x, y);
         }
 
+        private void SetJumpAbility(bool value)
+        {
+            _canJump = value;
+        }
+
+        private void SetDoubleJumpAbility(bool value)
+        {
+            _canDoubleJump = value;
+        }
+
+        private void SetDashAbility(bool value)
+        {
+            _canDash = value;
+        }
+
         private void SetDashSpeed(float speed)
         {
             _dashSpeed = speed;
+        }
+
+        private void SetDashDelay(float delay)
+        {
+            _dashDelay = delay;
+        }
+
+        private void SetAttackAbility(bool value)
+        {
+            _canLaunchProjectiles = value;
         }
 
         private void SetProjectileSpeed(float speed)
@@ -252,7 +296,7 @@ namespace Player
             _playerRigidbody2D.AddForce(Vector2.up * (CalculateJumpForce() * _playerRigidbody2D.mass),
                 ForceMode2D.Impulse);
             _isOnGround = false;
-            _canJump = false;
+            SetJumpAbility(false);
             ++_jumpCount;
         }
 
@@ -261,10 +305,17 @@ namespace Player
             var velocity = _playerRigidbody2D.velocity;
             Vector3 movdir = new Vector2(velocity.x, velocity.y).normalized;
             transform.position += movdir * _dashSpeed;
+            StartCoroutine(DashDelay());
+        }
+
+        private void LaunchProjectile()
+        {
+            _attackSpawnManager.SpawnProjectile();
+            StartCoroutine(AttackDelay());
         }
 
         private void RespawnCheck(){
-            if (transform.position.y < -40)
+            if (transform.position.y < DefaultRespawnLimit)
             {
                 transform.localPosition = _defaultPosition;
                 SetPlayerVelocity(0, 0);
@@ -275,9 +326,16 @@ namespace Player
 
         private IEnumerator AttackDelay()
         {
-            _canLaunchProjectiles = false;
+            SetAttackAbility(false);
             yield return new WaitForSeconds(_projectileDelay);
-            _canLaunchProjectiles = true;
+            SetAttackAbility(true);
+        }
+
+        private IEnumerator DashDelay()
+        {
+            SetDashAbility(false);
+            yield return new WaitForSeconds(_dashDelay);
+            SetDashAbility(true);
         }
 
         //TODO: Encapsuler l'Orientation

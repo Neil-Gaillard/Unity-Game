@@ -7,7 +7,7 @@ namespace Behaviours
     public class GoingForwardFromPlayer : MonoBehaviour
     {
         // ------- Constants -------
-        private const int DestructionOffset = 40;
+        private const int DestructionOffset = 50;
         private int _orientation;
 
         // ------- References -------
