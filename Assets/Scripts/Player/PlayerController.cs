@@ -5,7 +5,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        // ------ CONSTANTS ------ TEST EST TEST
+        // ------ CONSTANTS ------
 
         // --- Default Physics Values ---
         private const float DefaultMass = 60.0f;
@@ -42,7 +42,7 @@ namespace Player
         
         // --- Key Pressing Check ---
         private bool _jumpKeyHeld;
-
+        
         private float _horizontalInput;
 
         // --- Initialisation of values from constants ---
@@ -92,25 +92,32 @@ namespace Player
         
         private void FixedUpdate()
         {
-            //Checks if Player is on ground
             _isOnGround = _groundCheck.isOnGround();
-
-            //Counts how many times the player leaves the ground, and if they jump after 
+            
             _jumpCount = _isOnGround switch
             {
                 true => 0,
                 false when _jumpCount == 0 => 1,
                 _ => _jumpCount
             };
+            
+            ManageDashInput();
 
-            //PRESSION JUMPING
-            if (!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
-                _playerRigidbody2D.AddForce(new Vector2(0, -150) * DefaultMass);
-            
-            if (Input.GetKey(KeyCode.A) && _canDash)
-                Dash();
-            
-            //Move imput gestion
+            ManageMoveInput();
+            Move();
+        }
+
+        private void Update()
+        { 
+            ManageJumpInput();
+            ManageAttackInput();
+            RespawnCheck();
+        }
+        
+        // ------ INPUT MANAGER ------
+
+        private void ManageMoveInput()
+        {
             _horizontalInput = Input.GetAxis("Horizontal");
 
             if (_horizontalInput < 0)
@@ -123,13 +130,12 @@ namespace Player
                 _orientation = Orientation.Right;
                 _playerSpriteRenderer.flipX = false;
             }
-
-            Move();
         }
 
-        private void Update()
+        private void ManageJumpInput()
         {
-            // --- JUMPING ---
+            if (!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
+                _playerRigidbody2D.AddForce(new Vector2(0, -200) * DefaultMass);
             
             //If the player is releasing jump button, we put the value to true
             //This test will prevent continuous Jumping
@@ -152,23 +158,23 @@ namespace Player
             //Checks for jump button release
             if (Input.GetKeyUp(KeyCode.Space))
                 _jumpKeyHeld = false;
-            
-            // --- ATTACKING ---
+        }
 
+        private void ManageDashInput()
+        {
+            if (Input.GetKey(KeyCode.A) && _canDash)
+                Dash();
+        }
+
+        private void ManageAttackInput()
+        {
             if (_canLaunchProjectiles && Input.GetKey(KeyCode.Z))
             {
                 _attackSpawnManager.SpawnProjectile();
                 StartCoroutine(AttackDelay());
             }
-            
-            // --- RESPAWN ---
-            if (transform.position.y < -40)
-            {
-                transform.localPosition = _defaultPosition;
-                SetPlayerVelocity(0, 0);
-            }
         }
-        
+
         // ------ COLLISIONS DETECTION METHODS ------
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -255,6 +261,14 @@ namespace Player
             var velocity = _playerRigidbody2D.velocity;
             Vector3 movdir = new Vector2(velocity.x, velocity.y).normalized;
             transform.position += movdir * _dashSpeed;
+        }
+
+        private void RespawnCheck(){
+            if (transform.position.y < -40)
+            {
+                transform.localPosition = _defaultPosition;
+                SetPlayerVelocity(0, 0);
+            }
         }
         
         // ------ COROUTINES ------
