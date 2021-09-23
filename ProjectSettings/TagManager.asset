@@ -7,11 +7,9 @@ TagManager:
   - Projectile
   - Ground
   - Token
-  - PointDash
-  - PointDouble
-  - PointProjectile
   - Rock
   - CameraCheck
+  - Wall
   layers:
   - Default
   - TransparentFX

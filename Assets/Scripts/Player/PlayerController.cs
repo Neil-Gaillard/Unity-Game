@@ -8,7 +8,7 @@ namespace Player
         // ------ CONSTANTS ------
 
         // --- Default Physics Values ---
-        private const float DefaultMass = 60.0f;
+        private const float DefaultMass = 50.0f;
         private const float GravityModifier = 3.0f; //fall speed
         private const float GravityScale = 2.5f; //gravity influence
 
@@ -21,10 +21,11 @@ namespace Player
         private const float DefaultSpeed = 15.0f;
 
         private const float DefaultJumpForce = 20.0f;
-        private const float DefaultCounterJumpForce = 150.0f;
+        private const float DefaultCounterJumpForce = 500.0f;
 
-        private const float DefaultDashSpeed = 7.0f;
+        private const float DefaultDashSpeed = 70.0f;
         private const float DefaultDashDelay = 0.3f;
+        private const float DefaultDashTime = 0.15f;
 
         private const float DefaultProjectileSpeed = 30.0f;
         private const float DefaultProjectileDelay = 0.5f;
@@ -34,6 +35,8 @@ namespace Player
         // ------ PRIVATE ATTRIBUTES ------
 
         private readonly Vector3 _defaultPosition = new Vector3(DefaultPositionX, DefaultPositionY, DefaultPositionZ);
+        
+        private Orientation.Orientation _orientation = Orientation.Orientation.Left;
 
         // --- Player abilities ---
         private bool _canJump; //(can press the button to jump)
@@ -43,6 +46,7 @@ namespace Player
         
         // --- Player state ---
         private bool _isOnGround;
+        private bool _isDashing;
         
         // --- Key Pressing Check ---
         private bool _jumpKeyHeld;
@@ -55,11 +59,9 @@ namespace Player
         private float _dashDelay;
         private float _projectileDelay;
         private float _projectileSpeed;
-        private readonly float _speed = DefaultSpeed;
+        private float _speed;
 
         [Range(0, 2)] private int _jumpCount;
-        
-        private Orientation _orientation = Orientation.Left;
 
         // ------ PRIVATE REFERENCES ------
         
@@ -92,12 +94,16 @@ namespace Player
             
             //Initializing Attributes
             _jumpKeyHeld = false;
+
+            SetPlayerSpeed(DefaultSpeed);
+            
             SetDoubleJumpAbility(true);
             
             SetAttackAbility(true);
             SetProjectileSpeed(DefaultProjectileSpeed);
             SetProjectileDelay(DefaultProjectileDelay);
-            
+
+            _isDashing = false;
             SetDashAbility(true);
             SetDashSpeed(DefaultDashSpeed);
             SetDashDelay(DefaultDashDelay);
@@ -107,6 +113,8 @@ namespace Player
         private void FixedUpdate()
         {
             _isOnGround = _groundCheck.isOnGround();
+            
+            CounterJumpForce();
             
             _jumpCount = _isOnGround switch
             {
@@ -134,23 +142,23 @@ namespace Player
         {
             _horizontalInput = Input.GetAxis("Horizontal");
 
-            if (_horizontalInput < 0)
+            if (!_isDashing)
             {
-                _orientation = Orientation.Left;
-                _playerSpriteRenderer.flipX = true;
-            }
-            else if (_horizontalInput > 0)
-            {
-                _orientation = Orientation.Right;
-                _playerSpriteRenderer.flipX = false;
+                if (_horizontalInput < 0)
+                {
+                    _orientation = Orientation.Orientation.Left;
+                    _playerSpriteRenderer.flipX = true;
+                }
+                else if (_horizontalInput > 0)
+                {
+                    _orientation = Orientation.Orientation.Right;
+                    _playerSpriteRenderer.flipX = false;
+                }
             }
         }
 
         private void ManageJumpInput()
         {
-            if (!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
-                _playerRigidbody2D.AddForce(new Vector2(0, -DefaultCounterJumpForce) * DefaultMass);
-            
             //If the player is releasing jump button, we put the value to true
             //This test will prevent continuous Jumping
             if (!_canJump && Input.GetKeyUp(KeyCode.Space))
@@ -196,27 +204,16 @@ namespace Player
 
         // ------ COLLISIONS DETECTION METHODS ------
 
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Wall"))
+                SetPlayerVelocity(0, _playerRigidbody2D.velocity.y);
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Token"))
                 Destroy(other.gameObject);
-            if (other.gameObject.CompareTag("PointDouble"))
-            {
-                _canDoubleJump = true;
-                Destroy(other.gameObject);
-            }
-
-            if (other.gameObject.CompareTag("PointProjectile"))
-            {
-                _canLaunchProjectiles = true;
-                Destroy(other.gameObject);
-            }
-
-            if (other.gameObject.CompareTag("PointDash"))
-            {
-                _canDash = true;
-                Destroy(other.gameObject);
-            }
         }
 
         // ------ GETTERS ------
@@ -236,6 +233,11 @@ namespace Player
         private void SetPlayerVelocity(float x, float y)
         {
             _playerRigidbody2D.velocity = new Vector2(x, y);
+        }
+
+        private void SetPlayerSpeed(float value)
+        {
+            _speed = value;
         }
 
         private void SetJumpAbility(bool value)
@@ -282,7 +284,10 @@ namespace Player
 
         private void Move()
         {
-            SetPlayerVelocity(_speed * _horizontalInput, _playerRigidbody2D.velocity.y);
+            if (!_isDashing)
+                SetPlayerVelocity(_speed * _horizontalInput, _playerRigidbody2D.velocity.y);
+            else
+                SetPlayerVelocity(_dashSpeed * ((int) _orientation), 0);
         }
 
         private float CalculateJumpForce()
@@ -290,21 +295,27 @@ namespace Player
             return Mathf.Sqrt(2 * Physics2D.gravity.magnitude * DefaultJumpForce);
         }
 
+        private void CounterJumpForce()
+        {
+            if (!_jumpKeyHeld && Vector2.Dot(_playerRigidbody2D.velocity, Vector2.up) > 0)
+                _playerRigidbody2D.AddForce(new Vector2(0, -DefaultCounterJumpForce) * _playerRigidbody2D.mass);
+        }
+
         private void Jump()
         {
             SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
             _playerRigidbody2D.AddForce(Vector2.up * (CalculateJumpForce() * _playerRigidbody2D.mass),
                 ForceMode2D.Impulse);
-            _isOnGround = false;
             SetJumpAbility(false);
             ++_jumpCount;
         }
 
         private void Dash()
         {
-            var velocity = _playerRigidbody2D.velocity;
-            Vector3 movdir = new Vector2(velocity.x, velocity.y).normalized;
-            transform.position += movdir * _dashSpeed;
+            //var velocity = _playerRigidbody2D.velocity;
+            //Vector3 movdir = new Vector2(velocity.x, 0).normalized;
+            //transform.position += movdir * _dashSpeed;
+            StartCoroutine(DashTime());
             StartCoroutine(DashDelay());
         }
 
@@ -331,18 +342,18 @@ namespace Player
             SetAttackAbility(true);
         }
 
+        private IEnumerator DashTime()
+        {
+            _isDashing = true;
+            yield return new WaitForSeconds(DefaultDashTime);
+            _isDashing = false;
+        }
+
         private IEnumerator DashDelay()
         {
             SetDashAbility(false);
             yield return new WaitForSeconds(_dashDelay);
             SetDashAbility(true);
-        }
-
-        //TODO: Encapsuler l'Orientation
-        private enum Orientation
-        {
-            Left = -1,
-            Right = 1
         }
     }
 }
