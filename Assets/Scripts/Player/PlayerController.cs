@@ -7,6 +7,7 @@ namespace Player
     {
         // ------ CONSTANTS ------
 
+        
         // --- Default Physics Values ---
         private const float DefaultMass = 50.0f;
         private const float GravityModifier = 3.0f; //fall speed
