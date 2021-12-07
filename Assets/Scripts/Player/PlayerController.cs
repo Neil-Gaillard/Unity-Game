@@ -7,7 +7,6 @@ namespace Player
     {
         // ------ CONSTANTS ------
 
-        
         // --- Default Physics Values ---
         private const float DefaultMass = 50.0f;
         private const float GravityModifier = 3.0f; //fall speed
@@ -32,11 +31,11 @@ namespace Player
         private const float DefaultProjectileDelay = 0.5f;
 
         private const float DefaultRespawnLimit = -50.0f;
-        
+
         // ------ PRIVATE ATTRIBUTES ------
 
         private readonly Vector3 _defaultPosition = new Vector3(DefaultPositionX, DefaultPositionY, DefaultPositionZ);
-        
+
         private Orientation.Orientation _orientation = Orientation.Orientation.Left;
 
         // --- Player abilities ---
@@ -44,15 +43,15 @@ namespace Player
         private bool _canLaunchProjectiles;
         private bool _canDash;
         private bool _canDoubleJump;
-        
+
         // --- Player state ---
         private bool _isOnGround;
         private bool _isDashing;
-        
+
         // --- Key Pressing Check ---
         private bool _jumpKeyHeld;
         private bool _dashKeyHeld;
-        
+
         private float _horizontalInput;
 
         // --- Initialisation of values from constants ---
@@ -65,11 +64,11 @@ namespace Player
         [Range(0, 2)] private int _jumpCount;
 
         // ------ PRIVATE REFERENCES ------
-        
+
         // --- Own References ---
         private Rigidbody2D _playerRigidbody2D;
         private SpriteRenderer _playerSpriteRenderer;
-        
+
         // --- Other References ---
         private AttackSpawnManager _attackSpawnManager;
         private GroundCheck _groundCheck;
@@ -81,7 +80,7 @@ namespace Player
             //Initializing References
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
             _playerSpriteRenderer = GetComponent<SpriteRenderer>();
-            
+
             _attackSpawnManager = GameObject.Find("LaserSpawnManager").GetComponent<AttackSpawnManager>();
             _groundCheck = GameObject.Find("Ground Check").GetComponent<GroundCheck>();
         }
@@ -92,14 +91,14 @@ namespace Player
             Physics2D.gravity *= GravityModifier;
             _playerRigidbody2D.gravityScale = GravityScale;
             _playerRigidbody2D.mass = DefaultMass;
-            
+
             //Initializing Attributes
             _jumpKeyHeld = false;
 
             SetPlayerSpeed(DefaultSpeed);
-            
+
             SetDoubleJumpAbility(true);
-            
+
             SetAttackAbility(true);
             SetProjectileSpeed(DefaultProjectileSpeed);
             SetProjectileDelay(DefaultProjectileDelay);
@@ -110,20 +109,20 @@ namespace Player
             SetDashDelay(DefaultDashDelay);
             _dashKeyHeld = false;
         }
-        
+
         private void FixedUpdate()
         {
             _isOnGround = _groundCheck.isOnGround();
-            
+
             CounterJumpForce();
-            
+
             _jumpCount = _isOnGround switch
             {
                 true => 0,
                 false when _jumpCount == 0 => 1,
                 _ => _jumpCount
             };
-            
+
             ManageDashInput();
 
             ManageMoveInput();
@@ -131,12 +130,12 @@ namespace Player
         }
 
         private void Update()
-        { 
+        {
             ManageJumpInput();
             ManageAttackInput();
             RespawnCheck();
         }
-        
+
         // ------ INPUT MANAGER ------
 
         private void ManageMoveInput()
@@ -163,7 +162,7 @@ namespace Player
             //If the player is releasing jump button, we put the value to true
             //This test will prevent continuous Jumping
             if (!_canJump && Input.GetKeyUp(KeyCode.Space))
-                 SetJumpAbility(true);
+                SetJumpAbility(true);
 
             //If the player presses the jump button, it is indicated to _jumpKeyHeld and he jumps if he is on the ground
             //This launches the Initial Jump from the ground
@@ -171,13 +170,13 @@ namespace Player
             {
                 _jumpKeyHeld = true;
                 if (_isOnGround)
-                    Jump(); 
+                    Jump();
             }
 
             //Double jump check
             if (_canDoubleJump && !_isOnGround && _canJump && _jumpCount < 2 && Input.GetKeyDown(KeyCode.Space))
                 Jump();
-            
+
             //Checks for jump button release
             if (Input.GetKeyUp(KeyCode.Space))
                 _jumpKeyHeld = false;
@@ -218,7 +217,7 @@ namespace Player
         }
 
         // ------ GETTERS ------
-        
+
         public float GetProjectileSpeed()
         {
             return _projectileSpeed;
@@ -226,7 +225,7 @@ namespace Player
 
         public int GetOrientation()
         {
-            return (int) _orientation;
+            return (int)_orientation;
         }
 
         // ------ SETTERS ------
@@ -275,12 +274,12 @@ namespace Player
         {
             _projectileSpeed = speed;
         }
-        
+
         private void SetProjectileDelay(float delay)
         {
             _projectileDelay = delay;
         }
-        
+
         // ------ PLAYER ACTIONS ------
 
         private void Move()
@@ -288,7 +287,7 @@ namespace Player
             if (!_isDashing)
                 SetPlayerVelocity(_speed * _horizontalInput, _playerRigidbody2D.velocity.y);
             else
-                SetPlayerVelocity(_dashSpeed * ((int) _orientation), 0);
+                SetPlayerVelocity(_dashSpeed * ((int)_orientation), 0);
         }
 
         private float CalculateJumpForce()
@@ -323,14 +322,15 @@ namespace Player
             StartCoroutine(AttackDelay());
         }
 
-        private void RespawnCheck(){
+        private void RespawnCheck()
+        {
             if (transform.position.y < DefaultRespawnLimit)
             {
                 transform.localPosition = _defaultPosition;
                 SetPlayerVelocity(0, 0);
             }
         }
-        
+
         // ------ COROUTINES ------
 
         private IEnumerator AttackDelay()
