@@ -1,5 +1,4 @@
-/* UNUSED BECAUSE OF CINEMACHINE
-
+#if CUSTOM_CAMERA
 using System;
 using Player;
 using UnityEngine;
@@ -82,4 +81,4 @@ namespace Camera
         }
     }
 }
-*/
+#endif

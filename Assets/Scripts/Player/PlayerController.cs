@@ -165,7 +165,7 @@ namespace Player
                  SetJumpAbility(true);
 
             //If the player presses the jump button, it is indicated to _jumpKeyHeld and he jumps if he is on the ground
-            //This lauched the Initial Jump from the ground
+            //This launches the Initial Jump from the ground
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _jumpKeyHeld = true;
@@ -312,9 +312,6 @@ namespace Player
 
         private void Dash()
         {
-            //var velocity = _playerRigidbody2D.velocity;
-            //Vector3 movdir = new Vector2(velocity.x, 0).normalized;
-            //transform.position += movdir * _dashSpeed;
             StartCoroutine(DashTime());
             StartCoroutine(DashDelay());
         }

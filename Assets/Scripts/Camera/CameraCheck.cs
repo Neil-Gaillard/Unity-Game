@@ -1,5 +1,5 @@
-/* UNUSED BECAUSE OF CINEMACHINE
- 
+#if CUSTOM_CAMERA
+
 using UnityEngine;
 
 namespace Camera
@@ -26,4 +26,5 @@ namespace Camera
         }
     }
 }
-*/
+
+#endif
