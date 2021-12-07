@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    public class GoingForwardFromPlayer : MonoBehaviour
+    public class GoingForwardFromParentObject : MonoBehaviour
     {
         // ------- Constants -------
         private const int DestructionOffset = 50;
@@ -12,13 +12,15 @@ namespace Behaviours
 
         // ------- References -------
         private PlayerController _playerController;
+        private Transform _transform;
+        private Orientation.Orientation _orrientation;
 
         // ------- Private Attributes -------
         private float _speed;
 
         private void Awake()
         {
-            _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+            _transform = GetComponentInParent(typeof(Transform)) as Transform;
         }
 
         private void Start()
@@ -30,7 +32,7 @@ namespace Behaviours
         private void Update()
         {
             transform.Translate(Vector3.right.normalized * (_orientation * (Time.deltaTime * _speed)));
-            if (Math.Abs(_playerController.transform.position.x - transform.position.x) > DestructionOffset)
+            if (Math.Abs(_transform.position.x - transform.position.x) > DestructionOffset)
                 Destroy(gameObject);
         }
     }

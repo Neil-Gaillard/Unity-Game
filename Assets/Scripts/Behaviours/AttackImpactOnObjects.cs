@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Behaviours
@@ -7,7 +6,6 @@ namespace Behaviours
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            
         }
     }
 }
