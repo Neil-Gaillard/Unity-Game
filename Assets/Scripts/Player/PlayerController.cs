@@ -9,8 +9,8 @@ namespace Player
 
         // --- Default Physics Values ---
         private const float DefaultMass = 50.0f;
-        private const float GravityModifier = 3.0f; //fall speed
-        private const float GravityScale = 2.5f; //gravity influence
+        private const float GravityModifier = 3f; //fall speed
+        private const float GravityScale = 2.8f; //gravity influence
 
         // --- Default Position Values ---
         private const float DefaultPositionX = 0.0f;
@@ -18,12 +18,12 @@ namespace Player
         private const float DefaultPositionZ = 0.0f;
 
         // --- Default Characteristics ---
-        private const float DefaultSpeed = 15.0f;
+        private const float DefaultSpeed = 12.0f;
 
-        private const float DefaultJumpForce = 20.0f;
+        private const float DefaultJumpForce = 17.0f;
         private const float DefaultCounterJumpForce = 500.0f;
 
-        private const float DefaultDashSpeed = 70.0f;
+        private const float DefaultDashSpeed = 60.0f;
         private const float DefaultDashDelay = 0.3f;
         private const float DefaultDashTime = 0.15f;
 
@@ -71,18 +71,17 @@ namespace Player
 
         // --- Other References ---
         private AttackSpawnManager _attackSpawnManager;
-        private GroundCheck _groundCheck;
+        //private GroundCheck _groundCheck;
 
         // ------ EVENT METHODS ------
 
         private void Awake()
         {
-            //Initializing References
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
             _playerSpriteRenderer = GetComponent<SpriteRenderer>();
 
             _attackSpawnManager = GameObject.Find("LaserSpawnManager").GetComponent<AttackSpawnManager>();
-            _groundCheck = GameObject.Find("Ground Check").GetComponent<GroundCheck>();
+            //_groundCheck = GameObject.Find("Ground Check").GetComponent<GroundCheck>();
         }
 
         private void Start()
@@ -112,7 +111,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            _isOnGround = _groundCheck.isOnGround();
+            //_isOnGround = _groundCheck.isOnGround();
 
             CounterJumpForce();
 
@@ -127,11 +126,12 @@ namespace Player
 
             ManageMoveInput();
             Move();
+
+            ManageJumpInput();
         }
 
         private void Update()
         {
-            ManageJumpInput();
             ManageAttackInput();
             RespawnCheck();
         }
@@ -142,18 +142,16 @@ namespace Player
         {
             _horizontalInput = Input.GetAxis("Horizontal");
 
-            if (!_isDashing)
+            if (_isDashing) return;
+            if (_horizontalInput < 0)
             {
-                if (_horizontalInput < 0)
-                {
-                    _orientation = Orientation.Orientation.Left;
-                    _playerSpriteRenderer.flipX = true;
-                }
-                else if (_horizontalInput > 0)
-                {
-                    _orientation = Orientation.Orientation.Right;
-                    _playerSpriteRenderer.flipX = false;
-                }
+                _orientation = Orientation.Orientation.Left;
+                _playerSpriteRenderer.flipX = true;
+            }
+            else if (_horizontalInput > 0)
+            {
+                _orientation = Orientation.Orientation.Right;
+                _playerSpriteRenderer.flipX = false;
             }
         }
 
@@ -208,6 +206,14 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Wall"))
                 SetPlayerVelocity(0, _playerRigidbody2D.velocity.y);
+            else if (other.gameObject.CompareTag("Ground"))
+                this._isOnGround = true;
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ground"))
+                this._isOnGround = false;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -290,7 +296,7 @@ namespace Player
                 SetPlayerVelocity(_dashSpeed * ((int)_orientation), 0);
         }
 
-        private float CalculateJumpForce()
+        private static float CalculateJumpForce()
         {
             return Mathf.Sqrt(2 * Physics2D.gravity.magnitude * DefaultJumpForce);
         }
@@ -324,11 +330,9 @@ namespace Player
 
         private void RespawnCheck()
         {
-            if (transform.position.y < DefaultRespawnLimit)
-            {
-                transform.localPosition = _defaultPosition;
-                SetPlayerVelocity(0, 0);
-            }
+            if (!(transform.position.y < DefaultRespawnLimit)) return;
+            transform.localPosition = _defaultPosition;
+            SetPlayerVelocity(0, 0);
         }
 
         // ------ COROUTINES ------
