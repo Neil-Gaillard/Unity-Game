@@ -226,9 +226,9 @@ namespace Player
             return _projectileSpeed;
         }
 
-        public int GetOrientation()
+        public Orientation.Orientation GetOrientation()
         {
-            return (int)_orientation;
+            return _orientation;
         }
 
         // ------ SETTERS ------
