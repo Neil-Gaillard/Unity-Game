@@ -39,17 +39,17 @@ namespace Player
         private Orientation.Orientation _orientation = Orientation.Orientation.Left;
 
         // --- Player abilities ---
-        public bool _canJump; //(can press the button to jump)
+        private bool _canJump; //(can press the button to jump)
         private bool _canLaunchProjectiles;
         private bool _canDash;
         private bool _canDoubleJump;
 
         // --- Player state ---
-        public bool _isOnGround;
+        private bool _isOnGround;
         private bool _isDashing;
 
         // --- Key Pressing Check ---
-        public bool _jumpKeyHeld;
+        private bool _jumpKeyHeld;
         private bool _dashKeyHeld;
 
         private float _horizontalInput;
