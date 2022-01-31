@@ -39,17 +39,17 @@ namespace Player
         private Orientation.Orientation _orientation = Orientation.Orientation.Left;
 
         // --- Player abilities ---
-        private bool _canJump; //(can press the button to jump)
+        public bool _canJump; //(can press the button to jump)
         private bool _canLaunchProjectiles;
         private bool _canDash;
         private bool _canDoubleJump;
 
         // --- Player state ---
-        private bool _isOnGround;
+        public bool _isOnGround;
         private bool _isDashing;
 
         // --- Key Pressing Check ---
-        private bool _jumpKeyHeld;
+        public bool _jumpKeyHeld;
         private bool _dashKeyHeld;
 
         private float _horizontalInput;
@@ -71,7 +71,6 @@ namespace Player
 
         // --- Other References ---
         private AttackSpawnManager _attackSpawnManager;
-        //private GroundCheck _groundCheck;
 
         // ------ EVENT METHODS ------
 
@@ -81,7 +80,6 @@ namespace Player
             _playerSpriteRenderer = GetComponent<SpriteRenderer>();
 
             _attackSpawnManager = GameObject.Find("LaserSpawnManager").GetComponent<AttackSpawnManager>();
-            //_groundCheck = GameObject.Find("Ground Check").GetComponent<GroundCheck>();
         }
 
         private void Start()
@@ -111,8 +109,6 @@ namespace Player
 
         private void FixedUpdate()
         {
-            //_isOnGround = _groundCheck.isOnGround();
-
             CounterJumpForce();
 
             _jumpCount = _isOnGround switch
@@ -143,6 +139,7 @@ namespace Player
             _horizontalInput = Input.GetAxis("Horizontal");
 
             if (_isDashing) return;
+
             if (_horizontalInput < 0)
             {
                 _orientation = Orientation.Orientation.Left;
@@ -157,11 +154,6 @@ namespace Player
 
         private void ManageJumpInput()
         {
-            //If the player is releasing jump button, we put the value to true
-            //This test will prevent continuous Jumping
-            if (!_canJump && Input.GetKeyUp(KeyCode.Space))
-                SetJumpAbility(true);
-
             //If the player presses the jump button, it is indicated to _jumpKeyHeld and he jumps if he is on the ground
             //This launches the Initial Jump from the ground
             if (Input.GetKeyDown(KeyCode.Space))
@@ -171,13 +163,18 @@ namespace Player
                     Jump();
             }
 
-            //Double jump check
-            if (_canDoubleJump && !_isOnGround && _canJump && _jumpCount < 2 && Input.GetKeyDown(KeyCode.Space))
-                Jump();
+            //If the player is releasing jump button, we put the value to true
+            //This test will prevent continuous Jumping
+            if (!_canJump && Input.GetKeyUp(KeyCode.Space))
+                SetJumpAbility(true);
 
             //Checks for jump button release
             if (Input.GetKeyUp(KeyCode.Space))
                 _jumpKeyHeld = false;
+
+            //Double jump check
+            if (_canDoubleJump && !_isOnGround && _canJump && _jumpCount < 2 && Input.GetKeyDown(KeyCode.Space))
+                Jump();
         }
 
         private void ManageDashInput()
@@ -310,7 +307,7 @@ namespace Player
         private void Jump()
         {
             SetPlayerVelocity(_playerRigidbody2D.velocity.x, 0);
-            _playerRigidbody2D.AddForce(Vector2.up * (CalculateJumpForce() * _playerRigidbody2D.mass),
+            _playerRigidbody2D.AddForce(Vector2.up.normalized * (CalculateJumpForce() * _playerRigidbody2D.mass),
                 ForceMode2D.Impulse);
             SetJumpAbility(false);
             ++_jumpCount;

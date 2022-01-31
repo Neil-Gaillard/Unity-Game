@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 12a185481a73570439769655aabae6e4
+guid: e8f0c3fc667ed4f4ca1e676448779f01
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6084133513982503219
-    second: tilemaptest_0
+      213: 1231435411835315568
+    second: outdoor_tilemap_0
   - first:
-      213: 5163113369606407963
-    second: tilemaptest_1
+      213: -512431483619875491
+    second: outdoor_tilemap_1
   - first:
-      213: -7250353451342847591
-    second: tilemaptest_2
+      213: -4953865883193220905
+    second: outdoor_tilemap_2
+  - first:
+      213: -6600565488658011560
+    second: outdoor_tilemap_3
+  - first:
+      213: 2806943221394881561
+    second: outdoor_tilemap_4
+  - first:
+      213: -5873715580902233364
+    second: outdoor_tilemap_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -108,23 +117,95 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tilemaptest_0
+      name: outdoor_tilemap_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075e74e8bffe61110800000000000000
+      internalID: 1231435411835315568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d556c17d74a73e8f0800000000000000
+      internalID: -512431483619875491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d06757d935504bb0800000000000000
+      internalID: -4953865883193220905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a26dbc8a41664a0800000000000000
+      internalID: -6600565488658011560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_4
       rect:
         serializedVersion: 2
         x: 0
@@ -132,60 +213,35 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 339e9f2223f2f6450800000000000000
-      internalID: 6084133513982503219
+      spriteID: 91cbeefecf344f620800000000000000
+      internalID: 2806943221394881561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tilemaptest_1
+      name: outdoor_tilemap_5
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 32
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b17c57a114017a740800000000000000
-      internalID: 5163113369606407963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tilemaptest_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 6.501684}
-        - {x: -8, y: 8}
-        - {x: 8, y: 8}
-        - {x: 8, y: 6.6145477}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 991aea433f1916b90800000000000000
-      internalID: -7250353451342847591
+      spriteID: cea25a8acce5c7ea0800000000000000
+      internalID: -5873715580902233364
       vertices: []
       indices: 
       edges: []
