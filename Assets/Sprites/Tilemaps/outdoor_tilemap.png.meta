@@ -20,6 +20,99 @@ TextureImporter:
   - first:
       213: -5873715580902233364
     second: outdoor_tilemap_5
+  - first:
+      213: 5592116993125804367
+    second: outdoor_tilemap_6
+  - first:
+      213: 8177060081923791476
+    second: outdoor_tilemap_7
+  - first:
+      213: -7191838442946782330
+    second: outdoor_tilemap_8
+  - first:
+      213: -7966783047818440049
+    second: outdoor_tilemap_9
+  - first:
+      213: -7828958095934948140
+    second: outdoor_tilemap_10
+  - first:
+      213: -3979039459020870453
+    second: outdoor_tilemap_11
+  - first:
+      213: 2114304037005479647
+    second: outdoor_tilemap_12
+  - first:
+      213: 8792354304558585790
+    second: outdoor_tilemap_13
+  - first:
+      213: 252329057267153640
+    second: outdoor_tilemap_14
+  - first:
+      213: -8345395356898301014
+    second: outdoor_tilemap_15
+  - first:
+      213: -6807516963639951652
+    second: outdoor_tilemap_16
+  - first:
+      213: -7682675567802511395
+    second: outdoor_tilemap_17
+  - first:
+      213: -6129284029724856439
+    second: outdoor_tilemap_18
+  - first:
+      213: 238855681873025505
+    second: outdoor_tilemap_19
+  - first:
+      213: 4581322624051002630
+    second: outdoor_tilemap_20
+  - first:
+      213: 7112937340585154775
+    second: outdoor_tilemap_21
+  - first:
+      213: 6755969166609575498
+    second: outdoor_tilemap_22
+  - first:
+      213: -6322097686374027028
+    second: outdoor_tilemap_23
+  - first:
+      213: -855322981935918264
+    second: outdoor_tilemap_24
+  - first:
+      213: 4129594433505274972
+    second: outdoor_tilemap_25
+  - first:
+      213: -2936466680345911126
+    second: outdoor_tilemap_26
+  - first:
+      213: -8614258078089147374
+    second: outdoor_tilemap_27
+  - first:
+      213: -8468194522726964756
+    second: outdoor_tilemap_28
+  - first:
+      213: 4048660400557990677
+    second: outdoor_tilemap_29
+  - first:
+      213: 9208462113482264106
+    second: outdoor_tilemap_30
+  - first:
+      213: 6651371159468814790
+    second: outdoor_tilemap_31
+  - first:
+      213: -4800164852755913540
+    second: outdoor_tilemap_32
+  - first:
+      213: -6563105026461314597
+    second: outdoor_tilemap_33
+  - first:
+      213: -6370031278195759371
+    second: outdoor_tilemap_34
+  - first:
+      213: -2118909273361481963
+    second: outdoor_tilemap_35
+  - first:
+      213: 674425928121201840
+    second: outdoor_tilemap_36
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -42,6 +135,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -125,7 +219,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -146,7 +240,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 64
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -166,19 +260,15 @@ TextureImporter:
       name: outdoor_tilemap_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 32
+        y: 112
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: 6}
-        - {x: 8, y: 6}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 7d06757d935504bb0800000000000000
@@ -191,19 +281,15 @@ TextureImporter:
       name: outdoor_tilemap_3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
+        x: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: 6}
-        - {x: 8, y: 6}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 85a26dbc8a41664a0800000000000000
@@ -216,8 +302,8 @@ TextureImporter:
       name: outdoor_tilemap_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 64
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -237,8 +323,8 @@ TextureImporter:
       name: outdoor_tilemap_5
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -254,6 +340,657 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4960b5e6c03b9d40800000000000000
+      internalID: 5592116993125804367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a181212d0ca7170800000000000000
+      internalID: 8177060081923791476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b98264a05713c90800000000000000
+      internalID: -7191838442946782330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f829d20270d407190800000000000000
+      internalID: -7966783047818440049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcf0626714f95390800000000000000
+      internalID: -7828958095934948140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc6cc1a1bc97c8c0800000000000000
+      internalID: -3979039459020870453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdec2e0d154875d10800000000000000
+      internalID: 2114304037005479647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb75796f7a7b40a70800000000000000
+      internalID: 8792354304558585790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eafae0d0f3708300800000000000000
+      internalID: 252329057267153640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabe1e183233f2c80800000000000000
+      internalID: -8345395356898301014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde7bcba367d681a0800000000000000
+      internalID: -6807516963639951652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf0f809647a16590800000000000000
+      internalID: -7682675567802511395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f66c836a860faa0800000000000000
+      internalID: -6129284029724856439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e910a62af5905300800000000000000
+      internalID: 238855681873025505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d350857a0249f30800000000000000
+      internalID: 4581322624051002630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8903743da36b260800000000000000
+      internalID: 7112937340585154775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e6141992602cd50800000000000000
+      internalID: 6755969166609575498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_23
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce07b5076a56348a0800000000000000
+      internalID: -6322097686374027028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_24
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8435b7597484124f0800000000000000
+      internalID: -855322981935918264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_25
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c238bf1444f4930800000000000000
+      internalID: 4129594433505274972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_26
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa0263fbc139f37d0800000000000000
+      internalID: -2936466680345911126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_27
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c05f31be1047880800000000000000
+      internalID: -8614258078089147374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_28
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce163ffa2fdea7a80800000000000000
+      internalID: -8468194522726964756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 513237ffe2bbf2830800000000000000
+      internalID: 4048660400557990677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_30
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2ec0c1f0870bcf70800000000000000
+      internalID: 9208462113482264106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_31
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c1ba6d34da6e4c50800000000000000
+      internalID: 6651371159468814790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb42b20bf73626db0800000000000000
+      internalID: -4800164852755913540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_33
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1513250ca2be4a0800000000000000
+      internalID: -6563105026461314597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_34
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6a3076d4a1997a0800000000000000
+      internalID: -6370031278195759371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_35
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ff10a0e3f1892e0800000000000000
+      internalID: -2118909273361481963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: outdoor_tilemap_36
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b43af0feca0c5900800000000000000
+      internalID: 674425928121201840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -264,6 +1001,44 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      outdoor_tilemap_26: -2936466680345911126
+      outdoor_tilemap_34: -6370031278195759371
+      outdoor_tilemap_30: 9208462113482264106
+      outdoor_tilemap_22: 6755969166609575498
+      outdoor_tilemap_31: 6651371159468814790
+      outdoor_tilemap_11: -3979039459020870453
+      outdoor_tilemap_4: 2806943221394881561
+      outdoor_tilemap_10: -7828958095934948140
+      outdoor_tilemap_23: -6322097686374027028
+      outdoor_tilemap_35: -2118909273361481963
+      outdoor_tilemap_32: -4800164852755913540
+      outdoor_tilemap_29: 4048660400557990677
+      outdoor_tilemap_7: 8177060081923791476
+      outdoor_tilemap_28: -8468194522726964756
+      outdoor_tilemap_17: -7682675567802511395
+      outdoor_tilemap_0: 1231435411835315568
+      outdoor_tilemap_12: 2114304037005479647
+      outdoor_tilemap_27: -8614258078089147374
+      outdoor_tilemap_13: 8792354304558585790
+      outdoor_tilemap_5: -5873715580902233364
+      outdoor_tilemap_18: -6129284029724856439
+      outdoor_tilemap_8: -7191838442946782330
+      outdoor_tilemap_20: 4581322624051002630
+      outdoor_tilemap_24: -855322981935918264
+      outdoor_tilemap_15: -8345395356898301014
+      outdoor_tilemap_33: -6563105026461314597
+      outdoor_tilemap_2: -4953865883193220905
+      outdoor_tilemap_3: -6600565488658011560
+      outdoor_tilemap_14: 252329057267153640
+      outdoor_tilemap_21: 7112937340585154775
+      outdoor_tilemap_6: 5592116993125804367
+      outdoor_tilemap_16: -6807516963639951652
+      outdoor_tilemap_1: -512431483619875491
+      outdoor_tilemap_9: -7966783047818440049
+      outdoor_tilemap_25: 4129594433505274972
+      outdoor_tilemap_36: 674425928121201840
+      outdoor_tilemap_19: 238855681873025505
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
