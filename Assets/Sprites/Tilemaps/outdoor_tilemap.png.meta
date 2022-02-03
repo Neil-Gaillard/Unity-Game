@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -264,6 +265,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      outdoor_tilemap_4: 2806943221394881561
+      outdoor_tilemap_0: 1231435411835315568
+      outdoor_tilemap_5: -5873715580902233364
+      outdoor_tilemap_2: -4953865883193220905
+      outdoor_tilemap_3: -6600565488658011560
+      outdoor_tilemap_1: -512431483619875491
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
