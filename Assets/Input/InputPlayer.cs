@@ -71,7 +71,7 @@ namespace Input
                     ""name"": """",
                     ""id"": ""9a81a915-1136-486c-9222-9697128f5e1f"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
@@ -81,10 +81,10 @@ namespace Input
                 {
                     ""name"": """",
                     ""id"": ""2784dda1-9ce4-4236-a3f6-ee99e155ab73"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

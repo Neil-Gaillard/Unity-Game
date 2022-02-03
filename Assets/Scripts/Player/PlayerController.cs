@@ -14,7 +14,7 @@ namespace Player
         private const float GravityScale = 4.0f;
 
         // --- Default Characteristics ---
-        private const float DefaultSpeed = 10.5f;
+        private const float DefaultSpeed = 550.5f;
 
         private const float DefaultJumpForce = 17.0f;
         private const float DefaultCounterJumpForce = 100.0f;
@@ -70,13 +70,12 @@ namespace Player
 
         private void Start()
         {
-            //Initializing Physics Properties
             _playerRigidbody2D.gravityScale = GravityScale;
             _playerRigidbody2D.mass = DefaultMass;
             _projectileSpeed = DefaultProjectileSpeed;
             _projectileDelay = DefaultProjectileDelay;
 
-            _canDoubleJump = false;
+            _canDoubleJump = true;
             _canLaunchProjectiles = true;
             _canDash = true;
         }
@@ -134,13 +133,13 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Wall"))
                 _playerRigidbody2D.velocity = new Vector2(0, _playerRigidbody2D.velocity.y);
-            else if (other.gameObject.CompareTag("Ground"))
+            else if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Rock"))
                 this._isOnGround = true;
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground"))
+            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Rock"))
                 this._isOnGround = false;
         }
 
@@ -191,7 +190,8 @@ namespace Player
                     break;
             }
 
-            _playerRigidbody2D.velocity = new Vector2(DefaultSpeed * _xAxisValue, _playerRigidbody2D.velocity.y);
+            _playerRigidbody2D.velocity = new Vector2(DefaultSpeed * _xAxisValue * Time.fixedDeltaTime,
+                _playerRigidbody2D.velocity.y);
             //_playerRigidbody2D.MovePosition(gameObject.transform.position + new Vector3(_xAxisValue * DefaultSpeed * Time.deltaTime, 0, 0));
 
             /*var position = gameObject.transform.position;
