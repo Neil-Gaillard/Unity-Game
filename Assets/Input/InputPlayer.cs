@@ -35,7 +35,7 @@ namespace Input
                     ""id"": ""b63c420f-5e43-4913-869d-241332b582ea"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": ""Press(pressPoint=0.7)"",
                     ""initialStateCheck"": false
                 },
                 {
