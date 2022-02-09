@@ -76,15 +76,11 @@ namespace Player
             _projectileSpeed = DefaultProjectileSpeed;
             _projectileDelay = DefaultProjectileDelay;
 
-            switch (gameObject.GetComponent<SpriteRenderer>().flipX)
+            _orientation = gameObject.GetComponent<SpriteRenderer>().flipX switch
             {
-                case true:
-                    _orientation = Orientation.Orientation.Left;
-                    break;
-                case false:
-                    _orientation = Orientation.Orientation.Right;
-                    break;
-            }
+                true => Orientation.Orientation.Left,
+                false => Orientation.Orientation.Right
+            };
 
             _canJump = true;
             _canDoubleJump = true;
@@ -113,7 +109,7 @@ namespace Player
             if (_moveKeyPressed && !_isDashing)
                 Move();
             else if (!_isDashing)
-                this._playerRigidbody2D.velocity = new Vector2(0.0f, this._playerRigidbody2D.velocity.y);
+                _playerRigidbody2D.velocity = new Vector2(0.0f, this._playerRigidbody2D.velocity.y);
 
             if (_canJump && _jumpKeyPressed && _isOnGround)
                 Jump();
@@ -143,13 +139,13 @@ namespace Player
             if (other.gameObject.CompareTag("Wall"))
                 _playerRigidbody2D.velocity = new Vector2(0, _playerRigidbody2D.velocity.y);
             else if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Rock"))
-                this._isOnGround = true;
+                _isOnGround = true;
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Rock"))
-                this._isOnGround = false;
+                _isOnGround = false;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -203,6 +199,8 @@ namespace Player
         private void Dash()
         {
             StartCoroutine(DashTime());
+            _playerRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY |
+                                             RigidbodyConstraints2D.FreezeRotation;
             _playerRigidbody2D.velocity = new Vector2((int)_orientation * DefaultDashSpeed * Time.fixedDeltaTime, 0.0f);
         }
 
@@ -234,6 +232,9 @@ namespace Player
             _isDashing = true;
             yield return new WaitForSeconds(DefaultDashTime);
             _isDashing = false;
+            _playerRigidbody2D.constraints &= RigidbodyConstraints2D.FreezePositionX |
+                                              ~RigidbodyConstraints2D.FreezePositionY |
+                                              RigidbodyConstraints2D.FreezeRotation;
             yield return DashDelay();
         }
 
@@ -251,11 +252,11 @@ namespace Player
             switch (context.canceled)
             {
                 case true:
-                    this._jumpKeyPressed = false;
+                    _jumpKeyPressed = false;
                     _canJump = true;
                     break;
                 case false:
-                    this._jumpKeyPressed = true;
+                    _jumpKeyPressed = true;
                     break;
             }
         }
@@ -265,11 +266,11 @@ namespace Player
             switch (context.canceled)
             {
                 case true:
-                    this._moveKeyPressed = false;
+                    _moveKeyPressed = false;
                     break;
                 case false:
-                    this._moveKeyPressed = true;
-                    this._xAxisValue = context.ReadValue<float>();
+                    _moveKeyPressed = true;
+                    _xAxisValue = context.ReadValue<float>();
                     break;
             }
         }
@@ -279,12 +280,12 @@ namespace Player
             switch (context.canceled)
             {
                 case true:
-                    this._dashKeyPressed = false;
+                    _dashKeyPressed = false;
                     _canDash = true;
                     break;
                 case false:
                     if (!_dashDelay)
-                        this._dashKeyPressed = true;
+                        _dashKeyPressed = true;
                     break;
             }
         }

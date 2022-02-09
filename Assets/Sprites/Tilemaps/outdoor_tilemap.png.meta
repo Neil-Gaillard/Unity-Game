@@ -322,7 +322,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 7}
+        - {x: -8, y: 5}
+        - {x: 8, y: 5}
+        - {x: 8, y: 7}
       tessellationDetail: 0
       bones: []
       spriteID: 91cbeefecf344f620800000000000000
@@ -343,7 +347,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 7}
+        - {x: -8, y: 5}
+        - {x: 8, y: 5}
+        - {x: 8, y: 7}
       tessellationDetail: 0
       bones: []
       spriteID: cea25a8acce5c7ea0800000000000000
@@ -364,7 +372,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 7}
+        - {x: -8, y: 5}
+        - {x: 8, y: 5}
+        - {x: 8, y: 7}
       tessellationDetail: 0
       bones: []
       spriteID: f4960b5e6c03b9d40800000000000000
@@ -385,7 +397,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 7}
+        - {x: -8, y: 5}
+        - {x: 8, y: 5}
+        - {x: 8, y: 7}
       tessellationDetail: 0
       bones: []
       spriteID: 47a181212d0ca7170800000000000000
@@ -1139,10 +1155,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      outdoor_tilemap_38: 856976626
+      outdoor_tilemap_26: -2936466680345911126
       outdoor_tilemap_40: 1392481167
       outdoor_tilemap_21: 7112937340585154775
-      outdoor_tilemap_25: 4129594433505274972
+      outdoor_tilemap_38: 856976626
       outdoor_tilemap_30: 9208462113482264106
       outdoor_tilemap_34: -6370031278195759371
       outdoor_tilemap_22: 6755969166609575498
@@ -1169,12 +1185,12 @@ TextureImporter:
       outdoor_tilemap_24: -855322981935918264
       outdoor_tilemap_15: -8345395356898301014
       outdoor_tilemap_33: -6563105026461314597
-      outdoor_tilemap_2: -4953865883193220905
       outdoor_tilemap_3: -6600565488658011560
       outdoor_tilemap_16: -6807516963639951652
+      outdoor_tilemap_2: -4953865883193220905
       outdoor_tilemap_14: 252329057267153640
       outdoor_tilemap_19: 238855681873025505
-      outdoor_tilemap_26: -2936466680345911126
+      outdoor_tilemap_25: 4129594433505274972
       outdoor_tilemap_1: -512431483619875491
       outdoor_tilemap_9: -7966783047818440049
       outdoor_tilemap_37: -1359366622
