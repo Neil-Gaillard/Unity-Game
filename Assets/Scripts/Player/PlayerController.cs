@@ -47,8 +47,6 @@ namespace Player
         // --- Input State ---
         private bool _moveKeyPressed;
         private bool _jumpKeyPressed;
-        private bool _dashKeyPressed;
-
         private float _xAxisValue;
 
         [Range(0, 2)] private int _jumpCount;
@@ -115,9 +113,6 @@ namespace Player
                 Jump();
             if (_jumpKeyPressed && _canDoubleJump && !_isOnGround && _canJump && _jumpCount < 2)
                 Jump();
-
-            if (_canDash && _dashKeyPressed && !_isDashing && !_dashDelay)
-                Dash();
         }
 
         private void Update()
@@ -228,7 +223,6 @@ namespace Player
 
         private IEnumerator DashTime()
         {
-            _canDash = false;
             _isDashing = true;
             yield return new WaitForSeconds(DefaultDashTime);
             _isDashing = false;
@@ -277,22 +271,13 @@ namespace Player
 
         public void OnDash(InputAction.CallbackContext context)
         {
-            switch (context.canceled)
-            {
-                case true:
-                    _dashKeyPressed = false;
-                    _canDash = true;
-                    break;
-                case false:
-                    if (!_dashDelay)
-                        _dashKeyPressed = true;
-                    break;
-            }
+            if (_canDash && context.performed && !_isDashing && !_dashDelay)
+                Dash();
         }
 
         public void OnShoot(InputAction.CallbackContext context)
         {
-            if (_canLaunchProjectiles)
+            if (_canLaunchProjectiles && context.performed)
                 LaunchProjectile();
         }
     }
